@@ -1,5 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 export default class ContactForm extends React.Component {
   handleSubbmit = event => {
@@ -52,3 +53,13 @@ export default class ContactForm extends React.Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

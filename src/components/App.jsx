@@ -37,7 +37,7 @@ export class App extends React.Component {
   };
 
   render() {
-    const contacts = this.state.contacts;
+    const { contacts, filter } = this.state;
     return (
       <div
         style={{
@@ -54,8 +54,12 @@ export class App extends React.Component {
         <h1>Phonebook</h1>
         <ContactForm contacts={contacts} handleSubbmit={this.handleSubbmit} />
         <h2>Contacts</h2>
-        <Filter contacts={contacts} handleFilter={this.handleFilter} />
-        <ContactList state={this.state} handleDelete={this.handleDelete} />
+        <Filter handleFilter={this.handleFilter} />
+        <ContactList
+          contacts={contacts}
+          filter={filter}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }

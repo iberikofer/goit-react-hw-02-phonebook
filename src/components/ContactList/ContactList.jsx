@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ContactList extends React.Component {
   buildMarkup = () => {
-    const { contacts, filter } = this.props.state;
+    const contacts = this.props.contacts;
+    const filter = this.props.filter;
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().trim().includes(filter.toLowerCase().trim())
     );
@@ -27,3 +29,14 @@ export default class ContactList extends React.Component {
     );
   }
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  filter: PropTypes.string.isRequired,
+};
